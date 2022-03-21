@@ -22,36 +22,36 @@ help:
 
 # Custom commands for building and testing project documentation
 
-# build live preview of docs locally
-.PHONY: preview
-preview:
-	@echo "Running autobuild. View live edits at:"
-	@echo "  http://0.0.0.0:8000"
-	@echo ""
-	sphinx-autobuild --host 0.0.0.0 -b html $(SOURCEDIR) $(BUILDDIR)/html
+# # build live preview of docs locally
+# .PHONY: preview
+# preview:
+# 	@echo "Running autobuild. View live edits at:"
+# 	@echo "  http://0.0.0.0:8000"
+# 	@echo ""
+# 	sphinx-autobuild --host 0.0.0.0 -b html $(SOURCEDIR) $(BUILDDIR)/html
 
-# run docs quality tests locally
-.PHONY: test
-test:
-	rm -rf docs/_build
-	./scripts/test-docs.sh
+# # run docs quality tests locally
+# .PHONY: test
+# test:
+# 	rm -rf docs/_build
+# 	./scripts/test-docs.sh
 
-# one-time html build using a docker container
-.PHONY: docker-html
-docker-html:
-	rm -rf docs/_build
-	./scripts/docker-docs.sh make html
+# # one-time html build using a docker container
+# .PHONY: docker-html
+# docker-html:
+# 	rm -rf docs/_build
+# 	./scripts/docker-docs.sh make html
 
-# Build live preview of docs in a docker container
-.PHONY: docker-preview
-docker-preview:
-	rm -rf docs/_build
-	DOCKER_RUN_ARGS="-p 127.0.0.1:8000:8000" \
-		./scripts/docker-docs.sh \
-		sphinx-autobuild --host 0.0.0.0 -b html $(SOURCEDIR) $(BUILDDIR)/html
+# # Build live preview of docs in a docker container
+# .PHONY: docker-preview
+# docker-preview:
+# 	rm -rf docs/_build
+# 	DOCKER_RUN_ARGS="-p 127.0.0.1:8000:8000" \
+# 		./scripts/docker-docs.sh \
+# 		sphinx-autobuild --host 0.0.0.0 -b html $(SOURCEDIR) $(BUILDDIR)/html
 
-# run docs quality tests in a docker container
-.PHONY: docker-test
-docker-test:
-	rm -rf docs/_build
-	./scripts/docker-docs.sh ./scripts/test-docs.sh
+# # run docs quality tests in a docker container
+# .PHONY: docker-test
+# docker-test:
+# 	rm -rf docs/_build
+# 	./scripts/docker-docs.sh ./scripts/test-docs.sh
